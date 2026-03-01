@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Sivaprakash.N – Senior Quality Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --navy: #0d1b2a;
+    --navy-mid: #1b2e45;
+    --navy-light: #243b55;
+    --gold: #c9a84c;
+    --gold-light: #e8c97a;
+    --white: #f5f5f0;
+    --muted: #8a9bb0;
+    --accent: #2d7dd2;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--navy);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.2rem 6%;
+    background: rgba(13,27,42,0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+  }
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--gold);
+    letter-spacing: 0.04em;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    text-decoration: none;
+    color: var(--muted);
+    font-size: 0.88rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 120px 6% 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 70% 50%, rgba(45,125,210,0.08) 0%, transparent 60%),
+                radial-gradient(ellipse at 20% 80%, rgba(201,168,76,0.06) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  .hero-grid-bg {
+    position: absolute; inset: 0;
+    background-image: linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+  }
+  .hero-content { position: relative; max-width: 700px; }
+  .hero-tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid rgba(201,168,76,0.4);
+    padding: 0.35rem 1rem;
+    border-radius: 2px;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.8s ease both;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.6rem, 5vw, 4.2rem);
+    font-weight: 700;
+    line-height: 1.12;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+    animation: fadeUp 0.8s 0.15s ease both;
+  }
+  .hero h1 span { color: var(--gold); }
+  .hero-title {
+    font-size: 1.05rem;
+    color: var(--muted);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.8s 0.25s ease both;
+  }
+  .hero-summary {
+    font-size: 1.05rem;
+    color: #b0bec5;
+    max-width: 560px;
+    margin-bottom: 2.5rem;
+    animation: fadeUp 0.8s 0.35s ease both;
+  }
+  .hero-cta {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    animation: fadeUp 0.8s 0.45s ease both;
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    text-decoration: none;
+    padding: 0.75rem 1.8rem;
+    font-size: 0.88rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border-radius: 3px;
+    transition: all 0.3s;
+  }
+  .btn-primary {
+    background: var(--gold);
+    color: var(--navy);
+    border: 2px solid var(--gold);
+  }
+  .btn-primary:hover { background: var(--gold-light); border-color: var(--gold-light); transform: translateY(-2px); }
+  .btn-outline {
+    background: transparent;
+    color: var(--white);
+    border: 2px solid rgba(255,255,255,0.2);
+  }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+
+  /* Stats row */
+  .hero-stats {
+    display: flex; gap: 3rem; margin-top: 3.5rem; flex-wrap: wrap;
+    animation: fadeUp 0.8s 0.55s ease both;
+  }
+  .stat-item { text-align: left; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: var(--gold);
+    font-weight: 700;
+    line-height: 1;
+  }
+  .stat-label { font-size: 0.78rem; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 0.3rem; }
+
+  /* ── SECTIONS ── */
+  section { padding: 90px 6%; }
+  .section-label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.6rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    color: var(--white);
+    margin-bottom: 3rem;
+    position: relative;
+    padding-bottom: 1rem;
+  }
+  .section-title::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0;
+    width: 50px; height: 2px;
+    background: var(--gold);
+  }
+
+  /* ── EXPERIENCE ── */
+  #experience { background: var(--navy-mid); }
+  .exp-card {
+    background: var(--navy);
+    border: 1px solid rgba(201,168,76,0.12);
+    border-radius: 6px;
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .exp-card:hover { border-color: rgba(201,168,76,0.4); transform: translateY(-3px); }
+  .exp-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0;
+    width: 4px; height: 100%;
+    background: linear-gradient(to bottom, var(--gold), var(--accent));
+  }
+  .exp-header {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    flex-wrap: wrap; gap: 1rem;
+    margin-bottom: 0.8rem;
+  }
+  .exp-role {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--white);
+    font-weight: 600;
+  }
+  .exp-badge {
+    background: rgba(201,168,76,0.12);
+    color: var(--gold);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    padding: 0.3rem 0.85rem;
+    border-radius: 20px;
+    border: 1px solid rgba(201,168,76,0.25);
+    white-space: nowrap;
+  }
+  .exp-company {
+    font-size: 0.95rem;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+  }
+  .exp-responsibilities { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+  .exp-responsibilities li {
+    display: flex; gap: 0.75rem;
+    font-size: 0.92rem;
+    color: #b0bec5;
+    line-height: 1.6;
+  }
+  .exp-responsibilities li::before {
+    content: '▹';
+    color: var(--gold);
+    flex-shrink: 0;
+    margin-top: 0.05rem;
+  }
+  .tools-row {
+    display: flex; flex-wrap: wrap; gap: 0.6rem;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(201,168,76,0.1);
+  }
+  .tool-tag {
+    background: rgba(45,125,210,0.1);
+    color: #7ab8f5;
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: 0.3rem 0.8rem;
+    border-radius: 3px;
+    border: 1px solid rgba(45,125,210,0.2);
+  }
+
+  /* ── SKILLS ── */
+  #skills { background: var(--navy); }
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+  .skill-category {
+    background: var(--navy-mid);
+    border: 1px solid rgba(201,168,76,0.1);
+    border-radius: 6px;
+    padding: 2rem;
+    transition: border-color 0.3s;
+  }
+  .skill-category:hover { border-color: rgba(201,168,76,0.3); }
+  .skill-cat-title {
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.2rem;
+    display: flex; align-items: center; gap: 0.6rem;
+  }
+  .skill-cat-title span { font-size: 1.1rem; }
+  .skill-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .skill-pill {
+    background: rgba(255,255,255,0.05);
+    color: #cdd8e3;
+    font-size: 0.82rem;
+    padding: 0.35rem 0.85rem;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.08);
+    transition: all 0.3s;
+  }
+  .skill-pill:hover { background: rgba(201,168,76,0.1); border-color: rgba(201,168,76,0.3); color: var(--gold); }
+
+  /* ── EDUCATION ── */
+  #education { background: var(--navy-mid); }
+  .edu-card {
+    background: var(--navy);
+    border: 1px solid rgba(201,168,76,0.12);
+    border-radius: 6px;
+    padding: 2.5rem;
+    display: flex; gap: 2rem; align-items: flex-start;
+    max-width: 700px;
+    transition: border-color 0.3s;
+  }
+  .edu-card:hover { border-color: rgba(201,168,76,0.3); }
+  .edu-icon {
+    width: 56px; height: 56px;
+    background: rgba(201,168,76,0.1);
+    border: 1px solid rgba(201,168,76,0.25);
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.6rem;
+    flex-shrink: 0;
+  }
+  .edu-degree {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: var(--white);
+    margin-bottom: 0.3rem;
+  }
+  .edu-school { color: var(--accent); font-size: 0.95rem; font-weight: 500; margin-bottom: 0.2rem; }
+  .edu-field { color: var(--muted); font-size: 0.88rem; }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--navy); }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.2rem;
+    max-width: 700px;
+  }
+  .contact-card {
+    background: var(--navy-mid);
+    border: 1px solid rgba(201,168,76,0.1);
+    border-radius: 6px;
+    padding: 1.5rem;
+    display: flex; align-items: center; gap: 1rem;
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+  .contact-card:hover { border-color: var(--gold); transform: translateY(-2px); }
+  .contact-icon {
+    width: 44px; height: 44px;
+    background: rgba(201,168,76,0.1);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+  .contact-label { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.2rem; }
+  .contact-value { font-size: 0.9rem; color: var(--white); font-weight: 500; word-break: break-all; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--navy-mid);
+    border-top: 1px solid rgba(201,168,76,0.12);
+    padding: 2rem 6%;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
+  }
+  footer p { font-size: 0.82rem; color: var(--muted); }
+  .footer-name { color: var(--gold); font-weight: 600; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    .hero-stats { gap: 1.5rem; }
+    .edu-card { flex-direction: column; }
+    nav .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">SP</div>
+  <ul class="nav-links">
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Open to Opportunities</div>
+    <h1>Sivaprakash<span>.N</span></h1>
+    <p class="hero-title">Senior Quality Engineer &nbsp;·&nbsp; FinTech Specialist</p>
+    <p class="hero-summary">
+      4+ years of hands-on experience ensuring flawless quality across web and mobile FinTech platforms. Passionate about financial data accuracy, mobile testing strategies, and delivering audit-ready releases.
+    </p>
+    <div class="hero-cta">
+      <a href="#contact" class="btn btn-primary">Get in Touch</a>
+      <a href="#experience" class="btn btn-outline">View Experience</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">4+</div>
+        <div class="stat-label">Years Experience</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">3</div>
+        <div class="stat-label">Platforms Tested</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Audit Ready</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label">Career</div>
+  <h2 class="section-title">Work Experience</h2>
+  <div class="exp-card">
+    <div class="exp-header">
+      <div class="exp-role">Senior Quality Engineer</div>
+      <div class="exp-badge">4+ Years</div>
+    </div>
+    <div class="exp-company">ControlQore – FinTech Product &nbsp;|&nbsp; Web · Android · iOS</div>
+    <ul class="exp-responsibilities">
+      <li>Owned end-to-end quality assurance for web and mobile applications supporting financial control workflows — Transaction Matching, Manual Journals, Reconciliations, and Period Close.</li>
+      <li>Planned and executed mobile testing strategies for Android and iOS platforms, ensuring feature parity and consistency with web functionality.</li>
+      <li>Performed functional, regression, smoke, and exploratory testing across multiple devices, OS versions, and screen sizes.</li>
+      <li>Validated financial data accuracy on mobile views including balances, debit/credit entries, transaction statuses, and audit indicators.</li>
+      <li>Tested mobile-specific behaviours: app installation & upgrades, background/foreground state handling, network interruption & recovery, and session timeout/re-authentication.</li>
+      <li>Verified security and access controls on mobile apps including role-based access, data masking, and secure session handling.</li>
+      <li>Tested API integrations supporting mobile apps to ensure reliable data synchronisation between backend services and mobile UI.</li>
+      <li>Conducted performance and usability testing to validate responsiveness, navigation flow, and UX for finance users.</li>
+      <li>Ensured mobile applications met compliance and audit-readiness standards, especially for financial approvals and control actions.</li>
+      <li>Collaborated with product, design, and engineering teams to review mobile UI/UX and identify gaps early in the SDLC.</li>
+      <li>Logged, tracked, and validated mobile defects with clear reproduction steps and device/OS details; supported releases, hotfix validations, and post-release production verification.</li>
+    </ul>
+    <div class="tools-row">
+      <span class="tool-tag">Android Emulator</span>
+      <span class="tool-tag">iOS Simulator</span>
+      <span class="tool-tag">Real Devices</span>
+      <span class="tool-tag">Postman</span>
+      <span class="tool-tag">Swagger</span>
+      <span class="tool-tag">Testmo</span>
+      <span class="tool-tag">Jira</span>
+      <span class="tool-tag">Zephyr</span>
+      <span class="tool-tag">Agile / Scrum</span>
+    </div>
+  </div>
+
+  <div class="exp-card" style="margin-top:1.5rem;">
+    <div class="exp-header">
+      <div class="exp-role">Quality Engineer – FinTech Cloud Platform</div>
+      <div class="exp-badge" style="background:rgba(45,125,210,0.12);color:#7ab8f5;border-color:rgba(45,125,210,0.3);">Upcoming</div>
+    </div>
+    <div class="exp-company">GeekyBooks – Upcoming Cloud-Based FinTech Platform</div>
+    <ul class="exp-responsibilities">
+      <li>Engaged as a QA contributor for GeekyBooks, an upcoming cloud-based FinTech platform designed to modernise financial operations and workflows for businesses.</li>
+      <li>Performing functional and exploratory testing on cloud-native financial features, ensuring reliability, scalability, and data accuracy across environments.</li>
+      <li>Validating core FinTech modules including financial dashboards, transaction workflows, reporting, and integrations with banking and accounting services.</li>
+      <li>Testing multi-tenant cloud architecture for financial data isolation, role-based access control, and security compliance across user tiers.</li>
+      <li>Verifying compliance and audit-readiness standards for financial data handling, approvals, and control actions on the platform.</li>
+      <li>Collaborating with the product and engineering team to identify early-stage usability and functional gaps during pre-launch QA phases.</li>
+      <li>Contributing to test strategy, documentation, and release readiness checklists ahead of the platform's public launch.</li>
+    </ul>
+    <div class="tools-row">
+      <span class="tool-tag">Cloud Testing</span>
+      <span class="tool-tag">Functional Testing</span>
+      <span class="tool-tag">Exploratory Testing</span>
+      <span class="tool-tag">FinTech Domain</span>
+      <span class="tool-tag">Audit Compliance</span>
+      <span class="tool-tag">Pre-launch QA</span>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label">Expertise</div>
+  <h2 class="section-title">Skills & Technologies</h2>
+  <div class="skills-grid">
+    <div class="skill-category">
+      <div class="skill-cat-title"><span>🧪</span> Testing Types</div>
+      <div class="skill-pills">
+        <span class="skill-pill">Functional Testing</span>
+        <span class="skill-pill">Regression Testing</span>
+        <span class="skill-pill">Smoke Testing</span>
+        <span class="skill-pill">Exploratory Testing</span>
+        <span class="skill-pill">Usability Testing</span>
+        <span class="skill-pill">Performance Testing</span>
+        <span class="skill-pill">Security Testing</span>
+      </div>
+    </div>
+    <div class="skill-category">
+      <div class="skill-cat-title"><span>📱</span> Mobile Testing</div>
+      <div class="skill-pills">
+        <span class="skill-pill">Android Testing</span>
+        <span class="skill-pill">iOS Testing</span>
+        <span class="skill-pill">Android Emulator</span>
+        <span class="skill-pill">iOS Simulator</span>
+        <span class="skill-pill">Real Device Testing</span>
+        <span class="skill-pill">Cross-Platform QA</span>
+      </div>
+    </div>
+    <div class="skill-category">
+      <div class="skill-cat-title"><span>🔗</span> API & Tools</div>
+      <div class="skill-pills">
+        <span class="skill-pill">Postman</span>
+        <span class="skill-pill">Swagger</span>
+        <span class="skill-pill">REST API Testing</span>
+        <span class="skill-pill">Data Sync Validation</span>
+      </div>
+    </div>
+    <div class="skill-category">
+      <div class="skill-cat-title"><span>📋</span> Test Management</div>
+      <div class="skill-pills">
+        <span class="skill-pill">Testmo</span>
+        <span class="skill-pill">Jira</span>
+        <span class="skill-pill">Zephyr</span>
+        <span class="skill-pill">Test Planning</span>
+        <span class="skill-pill">Defect Tracking</span>
+        <span class="skill-pill">Test Reporting</span>
+      </div>
+    </div>
+    <div class="skill-category">
+      <div class="skill-cat-title"><span>💰</span> FinTech Domain</div>
+      <div class="skill-pills">
+        <span class="skill-pill">Transaction Matching</span>
+        <span class="skill-pill">Reconciliations</span>
+        <span class="skill-pill">Manual Journals</span>
+        <span class="skill-pill">Period Close</span>
+        <span class="skill-pill">Audit Compliance</span>
+        <span class="skill-pill">Financial Controls</span>
+      </div>
+    </div>
+    <div class="skill-category">
+      <div class="skill-cat-title"><span>⚙️</span> Methodology</div>
+      <div class="skill-pills">
+        <span class="skill-pill">Agile</span>
+        <span class="skill-pill">Scrum</span>
+        <span class="skill-pill">SDLC</span>
+        <span class="skill-pill">Release Management</span>
+        <span class="skill-pill">Cross-team Collaboration</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-label">Academic</div>
+  <h2 class="section-title">Education</h2>
+  <div class="edu-card">
+    <div class="edu-icon">🎓</div>
+    <div>
+      <div class="edu-degree">Bachelor of Computer Applications (BCA)</div>
+      <div class="edu-school">Rabindranath Tagore University</div>
+      <div class="edu-field">Computer Applications &nbsp;·&nbsp; Foundation in Software & Systems</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">Let's Connect</div>
+  <h2 class="section-title">Contact</h2>
+  <div class="contact-grid">
+    <a href="mailto:sivaprakashnarayanaswamy@gmail.com" class="contact-card">
+      <div class="contact-icon">✉️</div>
+      <div>
+        <div class="contact-label">Email</div>
+        <div class="contact-value">sivaprakashnarayanaswamy@gmail.com</div>
+      </div>
+    </a>
+    <a href="tel:+918592007521" class="contact-card">
+      <div class="contact-icon">📞</div>
+      <div>
+        <div class="contact-label">Mobile</div>
+        <div class="contact-value">+91 85920 07521</div>
+      </div>
+    </a>
+    <a href="https://www.linkedin.com/in/siva-prakash-n-bb74b120b" target="_blank" class="contact-card">
+      <div class="contact-icon">🔗</div>
+      <div>
+        <div class="contact-label">LinkedIn</div>
+        <div class="contact-value">siva-prakash-n</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 <span class="footer-name">Sivaprakash.N</span> All rights reserved.</p>
+  <p style="font-size:0.8rem; color:var(--muted);">Senior Quality Engineer · FinTech Specialist</p>
+</footer>
+
+</body>
+</html>
